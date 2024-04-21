@@ -1,0 +1,26 @@
+Name: user.rpc
+ListenOn: 0.0.0.0:8080
+Etcd:
+  Hosts:
+  - 127.0.0.1:2379
+  Key: user.rpc
+DataSource: root:03719@tcp(127.0.0.1:3306)/wg_zhihu_user?parseTime=true
+CacheRedis:
+  - Host: 127.0.0.1:6379
+    Pass:
+    Type: node
+BizRedis:
+  Host: 127.0.0.1:6379
+  Pass:
+  Type: node
+Consul:
+  Host: 127.0.0.1:8500
+  Key: user-rpc
+  Meta:
+    env: test
+    service_group: beyond
+    service_name: user-rpc
+Prometheus:
+  Host: 0.0.0.0
+  Port: 9103
+  Path: /metrics
