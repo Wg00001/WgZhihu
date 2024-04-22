@@ -15,6 +15,7 @@ type ServiceContext struct {
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
+	//客户端拦截器，用于将grpc传过来的status转换成我们自定义的错误码
 	userRPC := zrpc.MustNewClient(c.UserRPC, zrpc.WithUnaryClientInterceptor(interceptors.ClientErrorInterceptor()))
 	//conf := redis.RedisConf{
 	//	Host: c.BizRedis.Host,

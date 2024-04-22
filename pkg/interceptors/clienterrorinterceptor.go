@@ -14,6 +14,7 @@ func ClientErrorInterceptor() grpc.UnaryClientInterceptor {
 		err := invoker(ctx, method, req, reply, cc, opts...)
 		if err != nil {
 			grpcStatus, _ := status.FromError(err)
+			//将grpc的status转成自定义的xcode
 			xc := xcode.GrpcStatusToXCode(grpcStatus)
 			err = errors.WithMessage(xc, grpcStatus.Message())
 		}

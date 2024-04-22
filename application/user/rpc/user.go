@@ -1,6 +1,7 @@
 package main
 
 import (
+	"WgZhihu/pkg/interceptors"
 	"flag"
 	"fmt"
 
@@ -32,6 +33,10 @@ func main() {
 			reflection.Register(grpcServer)
 		}
 	})
+
+	//自定义拦截器
+	s.AddUnaryInterceptors(interceptors.ServerErrorInterceptor())
+
 	defer s.Stop()
 
 	fmt.Printf("Starting rpc server at %s...\n", c.ListenOn)

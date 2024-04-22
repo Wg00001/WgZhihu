@@ -148,6 +148,7 @@ func FromError(err error) *status.Status {
 		}
 	}
 
+	//status通过WithDetails方法把我们自定义的业务错误码存放到detail中
 	var grpcStatus *status.Status
 	switch err {
 	case context.Canceled:
@@ -182,6 +183,7 @@ func gRPCStatusFromXCode(code XCode) (*status.Status, error) {
 }
 
 func GrpcStatusToXCode(gstatus *status.Status) XCode {
+	//从details中获取自定义的错误信息
 	details := gstatus.Details()
 	for i := len(details) - 1; i >= 0; i-- {
 		detail := details[i]
