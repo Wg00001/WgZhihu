@@ -68,3 +68,21 @@ userRPC := zrpc.MustNewClient(c.UserRPC, zrpc.WithUnaryClientInterceptor(interce
 
 在internal文件夹下创建code.go文件夹存放错误码
 
+## 具体功能实现
+
+### 文章功能
+
+![img.png](readmeImg/img.png)
+
+- 文章服务：核心
+  - 通过article-bff提供对外接口
+  - 依赖于用户服务
+  - 文章发布后写入wg_zhihu_article数据库，同时通过缓存来读取。
+- 管理后台通过文章管理服务审核数据库中的文章
+- 文章服务与点赞、评论、标签服务相关联
+  - 点赞服务包括评论的点赞，通过kafka异步写入数据库，通过redis读取
+  - 评论通过缓存读取，通过评论管理服务审核，canal用于监听mysql变更写入到ES中
+
+## 数据库设计
+
+每个服务对应一个数据库，共有用户、文章、点赞、评论、标签表，具体设计在db文件夹内注释
