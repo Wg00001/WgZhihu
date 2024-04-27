@@ -86,3 +86,7 @@ userRPC := zrpc.MustNewClient(c.UserRPC, zrpc.WithUnaryClientInterceptor(interce
 ## 数据库设计
 
 每个服务对应一个数据库，共有用户、文章、点赞、评论、标签表，具体设计在db文件夹内注释
+
+## 对接阿里云OSS
+
+![img.png](readmeImg/img2.png)
