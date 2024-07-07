@@ -1,5 +1,5 @@
-create database wg_zhihu_article;
-use wg_zhihu_article;
+create database wgZhihu_article;
+use wgZhihu_article;
 
 CREATE TABLE `article` (
        `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',

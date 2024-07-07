@@ -6,7 +6,8 @@ import (
 )
 
 type ServiceContext struct {
-	Config         config.Config
+	Config config.Config
+	//kafka发送者客户端
 	KqPusherClient *kq.Pusher
 }
 

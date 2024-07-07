@@ -45,7 +45,9 @@ message ArticleItem {
 message ArticlesResponse {
   repeated ArticleItem articles = 1;
   bool isEnd = 2;
+//  基于游标的分页
   int64 cursor = 3;
+//  用于游标相同时的去重
   int64 articleId = 4;
 }
 

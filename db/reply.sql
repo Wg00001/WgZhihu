@@ -1,5 +1,5 @@
-create database wg_zhihu_reply;
-use wg_zhihu_reply;
+create database wgZhihu_reply;
+use wgZhihu_reply;
 
 CREATE TABLE `reply_count` (
                                `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',

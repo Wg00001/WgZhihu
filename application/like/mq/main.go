@@ -8,6 +8,7 @@ import (
 	"flag"
 
 	"github.com/zeromicro/go-zero/core/conf"
+	//mq服务的启动需要service工具
 	"github.com/zeromicro/go-zero/core/service"
 )
 
@@ -24,6 +25,7 @@ func main() {
 	serviceGroup := service.NewServiceGroup()
 	defer serviceGroup.Stop()
 
+	//创建ServiceGroup后，将consumers注册到其中
 	for _, mq := range logic.Consumers(ctx, svcCtx) {
 		serviceGroup.Add(mq)
 	}

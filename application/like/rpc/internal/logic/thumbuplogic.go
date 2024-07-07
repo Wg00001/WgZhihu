@@ -33,6 +33,7 @@ func (l *ThumbupLogic) Thumbup(in *service.ThumbupRequest) (*service.ThumbupResp
 		UserId:   in.UserId,
 		LikeType: in.LikeType,
 	}
+	//异步发送kafka消息
 	threading.GoSafe(func() {
 		data, err := json.Marshal(msg)
 		if err != nil {

@@ -1,5 +1,5 @@
-create database wg_zhihu_like;
-use wg_zhihu_like;
+create database wgZhihu_like;
+use wgZhihu_like;
 
 CREATE TABLE `like` (
                         `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',

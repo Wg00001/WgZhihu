@@ -30,7 +30,10 @@ func (l *ThumbupLogic) Consume(key, val string) error {
 }
 
 func Consumers(ctx context.Context, svcCtx *svc.ServiceContext) []service.Service {
+	//将kafka注册成service，通过service start方式启动服务
 	return []service.Service{
+		//将实现了Consume方法的接口，传给kq.MustNewQueue()
+		//返回一个service。在main中，通过serviceGroup来启动服务
 		kq.MustNewQueue(svcCtx.Config.KqConsumerConf, NewThumbupLogic(ctx, svcCtx)),
 	}
 }

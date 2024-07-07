@@ -1,5 +1,7 @@
 Name: like.rpc
 ListenOn: 0.0.0.0:8080
+#将mode设置为test以启动反射服务
+Mode: test
 Etcd:
   Hosts:
   - 127.0.0.1:2379

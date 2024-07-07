@@ -4,7 +4,9 @@ package service;
 option go_package="./service";
 
 service Like{
+  //点赞
   rpc Thumbup(ThumbupRequest)returns(ThumbupResponse);
+  //查看用户是否点赞
   rpc IsThumbup(IsThumbupRequest)returns(IsThumbupResponse);
 }
 

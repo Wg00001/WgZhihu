@@ -28,6 +28,7 @@ func main() {
 	s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
 		svc2.RegisterLikeServer(grpcServer, server.NewLikeServer(ctx))
 
+		//dev || test 模式下会注册反射服务。在配置文件中设置mode
 		if c.Mode == service.DevMode || c.Mode == service.TestMode {
 			reflection.Register(grpcServer)
 		}

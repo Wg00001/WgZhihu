@@ -1,5 +1,5 @@
-CREATE DATABASE wg_zhihu_user;
-USE wg_zhihu_user;
+CREATE DATABASE wgZhihu_user;
+USE wgZhihu_user;
 
 CREATE TABLE `user` (
                         `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
