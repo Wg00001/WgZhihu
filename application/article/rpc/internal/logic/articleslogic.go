@@ -221,9 +221,10 @@ func (l *ArticlesLogic) cacheArticles(ctx context.Context, uid, cursor, ps int64
 
 // 使用MapReduce并行获取文章详情
 func (l *ArticlesLogic) articleByIds(ctx context.Context, articleIds []int64) ([]*model.Article, error) {
+	//int64, *model.Article, []*model.Article - 分别是generate生成的数据以及mapper的入参，mapper的出参以及reducer的入参，reducer的出参
 	articles, err := mr.MapReduce[int64, *model.Article, []*model.Article](
+		//generate 生成数据
 		func(source chan<- int64) {
-			//generate 生成数据
 			for _, aid := range articleIds {
 				if aid == -1 {
 					continue
@@ -231,8 +232,8 @@ func (l *ArticlesLogic) articleByIds(ctx context.Context, articleIds []int64) ([
 				source <- aid
 			}
 		},
+		//mapper 处理数据
 		func(id int64, writer mr.Writer[*model.Article], cancel func(err error)) {
-			//mapper 处理数据
 			p, err := l.svcCtx.ArticleModel.FindOne(ctx, id)
 			if err != nil {
 				cancel(err)
@@ -240,8 +241,8 @@ func (l *ArticlesLogic) articleByIds(ctx context.Context, articleIds []int64) ([
 			}
 			writer.Write(p)
 		},
+		//reducer 聚合数据
 		func(pipe <-chan *model.Article, writer mr.Writer[[]*model.Article], cancel func(error)) {
-			//reducer 聚合数据
 			var articles []*model.Article
 			for article := range pipe {
 				articles = append(articles, article)

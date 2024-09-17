@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	passwordEncryptSeed = "(beyond)@#$"
+	passwordEncryptSeed = "(WgZhihu)@#$"
 	mobileAesKey        = "5A2E746B08D846502F37A6E2D85D583B"
 )
 
